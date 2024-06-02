@@ -4,6 +4,27 @@ import {BuildOption} from "./types/config";
 
 export const buildLoaders = ({isDev}: BuildOption): webpack.RuleSetRule[] => {
 
+    const assetsLoader = {
+        test: /\.(png|jpe?g|gif)$/i,
+        type: 'asset/resource',
+    }
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
+    const babelLoader = {
+        test: /\.(js|jsx|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ['@babel/preset-env'],
+            }
+        }
+    }
+
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
@@ -30,8 +51,10 @@ export const buildLoaders = ({isDev}: BuildOption): webpack.RuleSetRule[] => {
     };
 
 
-
     return [
+        assetsLoader,
+        svgLoader,
+        babelLoader,
         typeScripLoader,
         cssLoader
     ]

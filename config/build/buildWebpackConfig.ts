@@ -20,7 +20,7 @@ export function buildWebpackConfig(options: BuildOption): webpack.Configuration 
         module: {
             rules: buildLoaders(options),
         },
-        resolve: buildResolvers(),
+        resolve: buildResolvers(options),
         devServer: isDev ? buildDewServer(options) : undefined
     };
 }
