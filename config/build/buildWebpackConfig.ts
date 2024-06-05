@@ -1,26 +1,26 @@
-import {BuildOption} from "./types/config";
-import webpack from "webpack";
-import {buildPlugin} from "./buildPlugin";
-import {buildLoaders} from "./buildLoaders";
-import {buildResolvers} from "./buildResolvers";
-import {buildDewServer} from "./buildDewServer";
+import webpack from 'webpack';
+import { BuildOption } from './types/config';
+import { buildPlugin } from './buildPlugin';
+import { buildLoaders } from './buildLoaders';
+import { buildResolvers } from './buildResolvers';
+import { buildDewServer } from './buildDewServer';
 
 export function buildWebpackConfig(options: BuildOption): webpack.Configuration {
-    const {mode, paths, isDev} = options;
+    const { mode, paths, isDev } = options;
     return {
         devtool: isDev ? 'inline-source-map' : undefined,
         entry: paths.entry,
         output: {
             filename: '[name].[contenthash].js',
             path: paths.output,
-            clean: true
+            clean: true,
         },
         plugins: buildPlugin(options),
-        mode: mode,
+        mode,
         module: {
             rules: buildLoaders(options),
         },
         resolve: buildResolvers(options),
-        devServer: isDev ? buildDewServer(options) : undefined
+        devServer: isDev ? buildDewServer(options) : undefined,
     };
 }
