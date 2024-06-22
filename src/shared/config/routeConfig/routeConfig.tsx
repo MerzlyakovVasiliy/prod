@@ -1,6 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import MainPage from 'pages/MainPage/ui/MainPage';
 import { AboutPage } from 'pages/AboutPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
 
 /**
 * Список роутов приложения
@@ -8,6 +9,7 @@ import { AboutPage } from 'pages/AboutPage';
 export enum AppRouters {
     MAIN = 'main',
     ABOUT = 'about',
+    NOT_FOUD = 'not_found',
 }
 
 /**
@@ -16,6 +18,7 @@ export enum AppRouters {
 export const RoutePath: Record<AppRouters, string> = {
     [AppRouters.MAIN]: '/',
     [AppRouters.ABOUT]: '/about',
+    [AppRouters.NOT_FOUD]: '/*',
 };
 
 /**
@@ -29,5 +32,9 @@ export const routeConfig: Record<AppRouters, RouteProps> = {
     [AppRouters.ABOUT]: {
         path: RoutePath.about,
         element: <AboutPage />,
+    },
+    [AppRouters.NOT_FOUD]: {
+        path: RoutePath.not_found,
+        element: <NotFoundPage />,
     },
 };
