@@ -39,9 +39,23 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'no-underscore-dangle': 'off',
         'max-len': ['error', { code: 120, ignoreComments: true }],
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid'],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,
     },
+    overrides: [
+        {
+            files: [
+                '**/src/**/*.{test,stories}.{ts,tsx}',
+                './config//jest//jestEmptyComponent.tsx',
+            ],
+        },
+    ],
 };

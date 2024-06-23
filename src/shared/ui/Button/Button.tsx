@@ -18,6 +18,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
         theme,
         ...overProps
     } = props;
+    console.log('cls.Button:', cls.Button); // добавьте это
+    console.log('cls[theme]:', cls[theme]); // и это
     return (
         <button
             className={classNames(cls.Button, {}, [className, cls[theme]])}
