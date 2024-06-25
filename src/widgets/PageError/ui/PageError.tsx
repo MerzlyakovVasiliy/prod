@@ -1,13 +1,14 @@
 import classNames from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
+import React from 'react';
 import * as cls from './PageError.module.scss';
 
-interface ErrorPageProps {
+export interface PageErrorProps {
     className?: string;
 }
 
-export const PageError = ({ className }: ErrorPageProps) => {
+export const PageError = ({ className }: PageErrorProps) => {
     const { t } = useTranslation();
 
     const reloadPage = () => {

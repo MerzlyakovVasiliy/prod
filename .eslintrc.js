@@ -4,11 +4,7 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: [
-        'plugin:react/recommended',
-        'airbnb',
-        'plugin:i18next/recommended',
-    ],
+    extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'plugin:storybook/recommended', 'plugin:storybook/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -43,7 +39,7 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid'],
+                ignoreAttribute: ['data-testid', 'to'],
             },
         ],
     },
@@ -52,10 +48,10 @@ module.exports = {
     },
     overrides: [
         {
-            files: [
-                '**/src/**/*.{test,stories}.{ts,tsx}',
-                './config//jest//jestEmptyComponent.tsx',
-            ],
+            files: ['*.test.tsx'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
         },
     ],
 };

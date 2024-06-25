@@ -1,7 +1,7 @@
 import classNames from 'shared/lib/classNames/classNames';
 import './Loader.scss';
 
-interface LoaderProps {
+export interface LoaderProps {
     className?: string;
 }
 
