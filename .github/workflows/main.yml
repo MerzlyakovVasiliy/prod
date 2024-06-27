@@ -2,9 +2,9 @@ name: linting testing building
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 jobs:
   pipline:
     runs-on: ubuntu-latest
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Starting Node.js ${{ matrix.node-version}}
-        uses: action/step-node@v1
+        uses: action/setup-node@v1
         with:
           node-version: ${{ matrix.node-version}}
       - name: install modules
