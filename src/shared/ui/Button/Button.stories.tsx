@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonProps, ThemeButton } from './Button';
+import {
+    Button, ButtonProps, ButtonSize, ButtonTheme,
+} from './Button';
 
 const meta: Meta<ButtonProps> = {
     title: 'ui/Button',
@@ -8,7 +10,7 @@ const meta: Meta<ButtonProps> = {
         theme: {
             control: {
                 type: 'select',
-                options: Object.values(ThemeButton),
+                options: Object.values(ButtonTheme),
             },
         },
     },
@@ -19,21 +21,55 @@ type Story = StoryObj<ButtonProps>;
 
 export const Clear: Story = {
     args: {
-        theme: ThemeButton.CLEAR,
-        children: 'Clear Button',
+        theme: ButtonTheme.CLEAR,
+        children: 'Text',
     },
 };
 
 export const Outline: Story = {
     args: {
-        theme: ThemeButton.OUTLINE,
-        children: 'Button with Custom Class',
+        theme: ButtonTheme.OUTLINE,
+        children: 'Text',
     },
 };
 
-export const WithAdditionalProps: Story = {
+export const BackGroundTheme: Story = {
     args: {
-        children: 'Button with Props',
-        onClick: () => alert('Button clicked!'),
+        theme: ButtonTheme.BACKGROUND,
+        children: 'Text',
+    },
+};
+
+export const BackGroundInvertedTheme: Story = {
+    args: {
+        theme: ButtonTheme.BACKGROUND_INVERTED,
+        children: 'Text',
+    },
+};
+
+export const SquearL: Story = {
+    args: {
+        theme: ButtonTheme.BACKGROUND_INVERTED,
+        children: '>',
+        square: true,
+        size: ButtonSize.L,
+    },
+};
+
+export const SquearM: Story = {
+    args: {
+        theme: ButtonTheme.BACKGROUND_INVERTED,
+        children: '>',
+        square: true,
+        size: ButtonSize.M,
+    },
+};
+
+export const SquearXL: Story = {
+    args: {
+        theme: ButtonTheme.BACKGROUND_INVERTED,
+        children: '>',
+        square: true,
+        size: ButtonSize.XL,
     },
 };
