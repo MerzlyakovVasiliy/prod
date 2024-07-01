@@ -7,6 +7,9 @@ import type { Config } from 'jest';
 import path from 'path';
 
 const config: Config = {
+    globals: {
+        __IS_DEV__: true,
+    },
     // Automatically clear mock calls, instances, contexts and results before every test
     clearMocks: true,
     // The test environment that will be used for testing
