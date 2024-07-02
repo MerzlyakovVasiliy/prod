@@ -9,5 +9,7 @@
   "О сайте": "About us",
   "Войти": "Войти",
   "Increment": "Increment",
-  "Decrement": "Decrement"
+  "Decrement": "Decrement",
+  "Введите userName": "Введите userName",
+  "Введите пароль": "Введите пароль"
 }
