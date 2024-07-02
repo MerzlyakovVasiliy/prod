@@ -9,7 +9,7 @@ const preview: Preview = {
         (
             Story,
             context,
-        ) => ThemeDecorator(context.globals.theme === 'dark' ? 'dark' : 'light')(Story),
+        ) => ThemeDecorator(context.globals.theme === 'dark' ? 'app_dark_theme' : 'light')(Story),
         withRouter,
     ],
     parameters: {
