@@ -9,7 +9,7 @@ export const User = ({ className }: UserProps) => {
     console.log('as');
     return (
         <div className={classNames(cls.User, {}, [className])}>
-            s
+            <div />
         </div>
     );
 };

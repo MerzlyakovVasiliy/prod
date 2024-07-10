@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { LoginForm, LoginFormProps } from './LoginForm';
+import LoginForm, { LoginFormProps } from './LoginForm';
 
 const meta: Meta<LoginFormProps> = {
     title: 'features/LoginForm',

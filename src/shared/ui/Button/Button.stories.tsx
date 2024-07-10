@@ -80,3 +80,13 @@ export const SquearXL: Story = {
         size: ButtonSize.XL,
     },
 };
+
+export const Disabled: Story = {
+    args: {
+        theme: ButtonTheme.BACKGROUND_INVERTED,
+        children: '>',
+        square: true,
+        size: ButtonSize.XL,
+        disabled: true,
+    },
+};

@@ -1,6 +1,7 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
+import { createReducerManager } from 'app/providers/StoreProvider/config/reducerManager';
 import { StateSchema } from './StateSchema';
 
 export const createStore = (initialState?: StateSchema) => {
@@ -9,14 +10,16 @@ export const createStore = (initialState?: StateSchema) => {
         user: userReducer,
     };
 
-    return configureStore<StateSchema>({
-        reducer: rootReducer,
+    const reducerManager = createReducerManager(rootReducer);
+
+    const store = configureStore<StateSchema>({
+        reducer: reducerManager.reduce,
         devTools: __IS_DEV__,
         preloadedState: initialState,
     });
-};
 
-// // Infer the `RootState` and `AppDispatch` types from the store itself
-// export type RootState = ReturnType<typeof store.getState>
-// // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof store.dispatch
+    // @ts-ignore
+    store.reducerManager = reducerManager;
+
+    return store;
+};
