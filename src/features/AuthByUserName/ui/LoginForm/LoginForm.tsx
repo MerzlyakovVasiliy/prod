@@ -2,10 +2,11 @@ import classNames from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Input } from 'shared/ui/Input/Input';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { Text, TextTheme } from 'shared/ui/Text/Text';
 import { DynamicModuleLoading, ReducerList } from 'shared/lib/components/DynamicModuleLoading/DynamicModuleLoading';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
@@ -16,16 +17,17 @@ import * as cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 
 const initialReducers: ReducerList = {
     loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     const { t } = useTranslation();
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const password = useSelector(getLoginPassword);
     const username = useSelector(getLoginUsername);
@@ -40,10 +42,13 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
 
-    const onLoginClick = useCallback(() => {
+    const onLoginClick = useCallback(async () => {
         // @ts-ignore
-        dispatch(loginByUsername({ password, username }));
-    }, [dispatch, password, username]);
+        const result = await dispatch(loginByUsername({ password, username }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [dispatch, onSuccess, password, username]);
 
     return (
         <DynamicModuleLoading reducers={initialReducers}>

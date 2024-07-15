@@ -1,7 +1,8 @@
 import { RouteProps } from 'react-router-dom';
-import MainPage from 'pages/MainPage/ui/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
+import { ProfilePage } from 'pages/ProfilePage';
+import { MainPage } from 'pages/MainPage';
 
 /**
 * Список роутов приложения
@@ -9,6 +10,7 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 export enum AppRouters {
     MAIN = 'main',
     ABOUT = 'about',
+    PROFILE_PAGE = 'profile',
     NOT_FOUD = 'not_found',
 }
 
@@ -18,6 +20,7 @@ export enum AppRouters {
 export const RoutePath: Record<AppRouters, string> = {
     [AppRouters.MAIN]: '/',
     [AppRouters.ABOUT]: '/about',
+    [AppRouters.PROFILE_PAGE]: '/profile',
     [AppRouters.NOT_FOUD]: '/*',
 };
 
@@ -33,8 +36,13 @@ export const routeConfig: Record<AppRouters, RouteProps> = {
         path: RoutePath.about,
         element: <AboutPage />,
     },
+    [AppRouters.PROFILE_PAGE]: {
+        path: RoutePath.profile,
+        element: <ProfilePage />,
+    },
     [AppRouters.NOT_FOUD]: {
         path: RoutePath.not_found,
         element: <NotFoundPage />,
     },
+
 };

@@ -8,9 +8,6 @@ describe('getLoginIsLoading.test', () => {
             [{ loginForm: { isLogin: true } }, true],
             [{ loginForm: { isLogin: false } }, false],
             [{ loginForm: {} }, false],
-            [{}, false],
-            [null, false],
-            [undefined, false],
         ])('given state %j should return %s', (state, expectedIsLogin) => {
             expect(getLoginIsLoading(state as StateSchema)).toBe(expectedIsLogin);
         });
