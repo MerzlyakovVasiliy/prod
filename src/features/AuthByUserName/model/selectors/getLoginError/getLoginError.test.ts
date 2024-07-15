@@ -1,3 +1,4 @@
+import { StateSchema } from 'app/providers/StoreProvider';
 import { getLoginError } from './getLoginError';
 
 describe('getLoginError.test', () => {
@@ -11,7 +12,7 @@ describe('getLoginError.test', () => {
             [null, ''],
             [undefined, ''],
         ])('given state %j should return %s', (state, expectedError) => {
-            expect(getLoginError(state)).toBe(expectedError);
+            expect(getLoginError(state as StateSchema)).toBe(expectedError);
         });
     });
 });
