@@ -1,3 +1,4 @@
+import { StateSchema } from 'app/providers/StoreProvider';
 import { getLoginIsLoading } from './getLoginIsLoading';
 
 describe('getLoginIsLoading.test', () => {
@@ -11,7 +12,7 @@ describe('getLoginIsLoading.test', () => {
             [null, false],
             [undefined, false],
         ])('given state %j should return %s', (state, expectedIsLogin) => {
-            expect(getLoginIsLoading(state)).toBe(expectedIsLogin);
+            expect(getLoginIsLoading(state as StateSchema)).toBe(expectedIsLogin);
         });
     });
 });
