@@ -12,16 +12,17 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
 
     return {
         getReducerMap: () => reducers,
-        reduce: (state: StateSchema, action: UnknownAction) => {
+        reduce: (state: StateSchema | Partial<StateSchema> | undefined, action: UnknownAction) => {
             if (keysToRemove.length > 0) {
                 state = { ...state };
                 keysToRemove.forEach((key) => {
-                    delete state[key];
+                    delete state![key];
                 });
 
                 keysToRemove = [];
             }
 
+            // @ts-ignore
             return combinedReducer(state, action);
         },
         add: (key: StateSchemaKye, reducer: Reducer) => {

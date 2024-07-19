@@ -8,8 +8,6 @@ export type ReducerList = {
     [name in StateSchemaKye]?: Reducer;
 }
 
-type ReducersListEntry = [StateSchemaKye, Reducer]
-
 interface DynamicModuleLoadingProps {
     children?: React.ReactNode;
     reducers: ReducerList;
@@ -25,14 +23,14 @@ export const DynamicModuleLoading: React.FC<DynamicModuleLoadingProps> = (props)
     const store = useStore() as ReduxStoreWithManager;
 
     useEffect(() => {
-        Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-            store.reducerManager.add(name, reducer);
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaKye, reducer);
         });
 
         return () => {
             if (removeAfterUnmount) {
-                Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
-                    store.reducerManager.remove(name);
+                Object.entries(reducers).forEach(([name, reducer]) => {
+                    store.reducerManager.remove(name as StateSchemaKye);
                 });
             }
         };

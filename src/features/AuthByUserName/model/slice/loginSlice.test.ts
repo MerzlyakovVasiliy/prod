@@ -6,7 +6,7 @@ describe('loginSlice.test', () => {
 
     beforeEach(() => {
         initialState = {
-            isLogin: false,
+            isLoading: false,
             password: '',
             username: '',
         };

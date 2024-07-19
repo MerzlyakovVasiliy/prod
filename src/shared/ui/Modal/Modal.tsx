@@ -1,4 +1,4 @@
-import classNames from 'shared/lib/classNames/classNames';
+import classNames, { Mods } from 'shared/lib/classNames/classNames';
 import React, {
     useCallback, useEffect, useRef, useState,
 } from 'react';
@@ -65,7 +65,7 @@ export const Modal: React.FC<ModalProps> = (props: ModalProps) => {
         };
     }, [isOpen, onKeyDown]);
 
-    const mods = {
+    const mods: Mods = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosind,
     };
