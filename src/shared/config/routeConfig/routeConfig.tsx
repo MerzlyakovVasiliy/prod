@@ -4,13 +4,17 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
 import { MainPage } from 'pages/MainPage';
 
+type AppRoutProps = RouteProps & {
+    authOnly?: boolean
+}
+
 /**
 * Список роутов приложения
 */
 export enum AppRouters {
     MAIN = 'main',
     ABOUT = 'about',
-    PROFILE_PAGE = 'profile',
+    PROFILE = 'profile',
     NOT_FOUD = 'not_found',
 }
 
@@ -20,14 +24,14 @@ export enum AppRouters {
 export const RoutePath: Record<AppRouters, string> = {
     [AppRouters.MAIN]: '/',
     [AppRouters.ABOUT]: '/about',
-    [AppRouters.PROFILE_PAGE]: '/profile',
+    [AppRouters.PROFILE]: '/profile',
     [AppRouters.NOT_FOUD]: '/*',
 };
 
 /**
  * Конфиг путей
  */
-export const routeConfig: Record<AppRouters, RouteProps> = {
+export const routeConfig: Record<AppRouters, AppRoutProps> = {
     [AppRouters.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />,
@@ -36,9 +40,10 @@ export const routeConfig: Record<AppRouters, RouteProps> = {
         path: RoutePath.about,
         element: <AboutPage />,
     },
-    [AppRouters.PROFILE_PAGE]: {
+    [AppRouters.PROFILE]: {
         path: RoutePath.profile,
         element: <ProfilePage />,
+        authOnly: true,
     },
     [AppRouters.NOT_FOUD]: {
         path: RoutePath.not_found,

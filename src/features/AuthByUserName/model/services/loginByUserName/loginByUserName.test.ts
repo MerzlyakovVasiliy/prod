@@ -5,8 +5,6 @@ import { loginByUsername } from './loginByUserName';
 import { StateSchema } from '../../../../../app/providers/StoreProvider';
 import { TestAsyncFunk } from '../../../../../shared/lib/test/TestAsyncFunk/TestAsyncFunk';
 
-jest.mock('axios');
-const mockedAxios = jest.mocked(axios);
 describe('loginByUserName.test', () => {
     // let dispatch: Dispatch;
     // let getState: () => StateSchema;
@@ -39,9 +37,9 @@ describe('loginByUserName.test', () => {
 
     test('success', async () => {
         const userValue = { username: 'test', id: '1' };
-        mockedAxios.post.mockResolvedValue({ data: userValue });
 
         const thunk = new TestAsyncFunk(loginByUsername);
+        thunk.api.post.mockResolvedValue({ data: userValue });
         const result = await thunk.callThunk({ username: '123', password: '123' });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(3);
@@ -50,9 +48,8 @@ describe('loginByUserName.test', () => {
     });
 
     test('reject', async () => {
-        mockedAxios.post.mockRejectedValue({ status: 403 });
-
         const thunk = new TestAsyncFunk(loginByUsername);
+        thunk.api.post.mockRejectedValue({ status: 403 });
         const result = await thunk.callThunk({ username: '123', password: '123' });
 
         expect(thunk.dispatch).toHaveBeenCalledTimes(2);

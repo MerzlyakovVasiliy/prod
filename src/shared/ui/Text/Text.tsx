@@ -8,11 +8,18 @@ export enum TextTheme {
     ERROR = 'error',
 }
 
+export enum TextAlign {
+    RIGHT = 'right',
+    LEFT = 'left',
+    CENTER = 'center',
+}
+
 export interface TextProps {
     className?: string;
     title?: string;
     text?: string;
     theme?: TextTheme;
+    align?: TextAlign;
 }
 
 export const Text = memo((props: TextProps) => {
@@ -21,10 +28,12 @@ export const Text = memo((props: TextProps) => {
         text,
         title,
         theme = AppLinkTheme.PRIMARY,
+        align = TextAlign.LEFT,
     } = props;
 
     const mods = {
         [cls[theme]]: true,
+        [cls[align]]: true,
     };
 
     return (
